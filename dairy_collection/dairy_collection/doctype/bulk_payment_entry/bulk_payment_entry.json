@@ -20,6 +20,7 @@
   "mode_of_payment",
   "section_break_sptnt",
   "bulk_payment_entry_details",
+<<<<<<< HEAD
   "section_break_l3efc",
   "duebalance",
   "column_break_awvae",
@@ -28,9 +29,15 @@
   "total",
   "column_break_ylr5q",
   "balance_",
+<<<<<<< HEAD
   "section_break_3udq4",
   "payment_denomination",
   "total_payment_denomination",
+=======
+=======
+  "total",
+>>>>>>> 69e4dcb (first commit)
+>>>>>>> db808ed (first commit)
   "section_break_h5fxe",
   "from_date",
   "column_break_hljkr",
@@ -39,6 +46,14 @@
   "invoices",
   "orders",
   "payment_reference",
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  "payment_denomination",
+  "total_payment_denomination",
+=======
+>>>>>>> 69e4dcb (first commit)
+>>>>>>> db808ed (first commit)
   "amended_from"
  ],
  "fields": [
@@ -169,8 +184,16 @@
   },
   {
    "fieldname": "total",
+<<<<<<< HEAD
    "fieldtype": "Int",
+=======
+   "fieldtype": "Float",
+<<<<<<< HEAD
+>>>>>>> db808ed (first commit)
    "label": "Paid Amount",
+=======
+   "label": "Total",
+>>>>>>> 69e4dcb (first commit)
    "precision": "2",
    "read_only": 1
   },
@@ -180,6 +203,7 @@
    "fieldtype": "Link",
    "label": "Route",
    "options": "Route Master"
+<<<<<<< HEAD
   },
   {
    "fieldname": "payment_denomination",
@@ -225,10 +249,15 @@
    "fieldtype": "Int",
    "label": "Balance",
    "read_only": 1
+<<<<<<< HEAD
   },
   {
    "fieldname": "section_break_3udq4",
    "fieldtype": "Section Break"
+=======
+=======
+>>>>>>> 69e4dcb (first commit)
+>>>>>>> db808ed (first commit)
   }
  ],
  "index_web_pages_for_search": 1,
@@ -239,7 +268,15 @@
    "link_fieldname": "custom_bulk_payment_entry"
   }
  ],
+<<<<<<< HEAD
  "modified": "2024-12-11 20:12:34.005658",
+=======
+<<<<<<< HEAD
+ "modified": "2024-12-06 22:40:38.225375",
+=======
+ "modified": "2024-10-19 11:56:24.881911",
+>>>>>>> 69e4dcb (first commit)
+>>>>>>> db808ed (first commit)
  "modified_by": "Administrator",
  "module": "Dairy Collection",
  "name": "Bulk Payment Entry",
