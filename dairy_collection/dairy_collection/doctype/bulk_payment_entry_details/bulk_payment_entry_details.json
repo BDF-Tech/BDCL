@@ -13,7 +13,10 @@
   "party",
   "party_name",
   "column_break_fsftk",
+  "due_balance",
+  "grand_tot",
   "paid_amount",
+  "balance",
   "paid_from",
   "paid_to",
   "route",
@@ -288,11 +291,28 @@
    "fieldtype": "Link",
    "label": "Route",
    "options": "Route Master"
+  },
+  {
+   "fieldname": "due_balance",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Due Balance"
+  },
+  {
+   "fieldname": "balance",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Balance"
+  },
+  {
+   "fieldname": "grand_tot",
+   "fieldtype": "Currency",
+   "label": "Grand Total"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2024-10-11 11:34:11.567637",
+ "modified": "2024-11-24 19:31:30.180332",
  "modified_by": "Administrator",
  "module": "Dairy Collection",
  "name": "Bulk Payment Entry Details",

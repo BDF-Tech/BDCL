@@ -156,11 +156,7 @@ frappe.ui.form.on('Bulk Payment Entry', {
 			doc: frm.doc
 		});
 		frm.refresh_table("bulk_payment_entry_details");
-		
 		frm.refresh_table("payment_reference");	
-			
-		
-		
 	},
 
 });
