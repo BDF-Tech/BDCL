@@ -487,5 +487,9 @@ class BulkPaymentEntry(Document):
 			payment_entry.cancel()
 
 	def before_save(self):
+		tot_pay = 0
 		for i in self.get("bulk_payment_entry_details",{"paid_amount":(">",0)}):
 			i.balance = i.due_balance + i.grand_tot - i.paid_amount
+		for dom in self.payment_denomination:
+			tot_pay += dom.total
+		self.total_payment_denomination = tot_pay

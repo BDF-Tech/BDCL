@@ -161,6 +161,20 @@ frappe.ui.form.on('Bulk Payment Entry', {
 
 });
 
+frappe.ui.form.on('Bulk Payment Entry Payment Denomination', {
+	denomination: function (frm, cdt, cdn) {
+		var d = locals[cdt][cdn];
+		if(d.denomination && d.count){
+			frappe.model.set_value(cdt, cdn, 'total', d.denomination * d.count)
+		}
+	},
+	count: function (frm, cdt, cdn) {
+		var d = locals[cdt][cdn];
+		if(d.denomination && d.count){
+			frappe.model.set_value(cdt, cdn, 'total', d.denomination * d.count)
+		}
+	},
+});
 
 
 frappe.ui.form.on("Bulk Payment Entry", {

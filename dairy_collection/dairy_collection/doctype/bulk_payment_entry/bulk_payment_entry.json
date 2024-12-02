@@ -30,6 +30,8 @@
   "orders",
   "section_break_5etzl",
   "payment_reference",
+  "payment_denomination",
+  "total_payment_denomination",
   "amended_from"
  ],
  "fields": [
@@ -172,6 +174,17 @@
    "fieldtype": "Link",
    "label": "Route",
    "options": "Route Master"
+  },
+  {
+   "fieldname": "payment_denomination",
+   "fieldtype": "Table",
+   "label": "Payment Denomination",
+   "options": "Bulk Payment Entry Payment Denomination"
+  },
+  {
+   "fieldname": "total_payment_denomination",
+   "fieldtype": "Currency",
+   "label": "Total Payment Denomination"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -182,7 +195,7 @@
    "link_fieldname": "custom_bulk_payment_entry"
   }
  ],
- "modified": "2024-10-19 11:56:24.881911",
+ "modified": "2024-12-02 20:18:59.452014",
  "modified_by": "Administrator",
  "module": "Dairy Collection",
  "name": "Bulk Payment Entry",
