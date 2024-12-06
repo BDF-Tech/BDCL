@@ -404,6 +404,7 @@ class BulkPaymentEntry(Document):
 							"gate_pass_date": j.parent,
 							"reference_id":j.name,
 						},),
+		
 
 	@frappe.whitelist()
 	def gate(self):

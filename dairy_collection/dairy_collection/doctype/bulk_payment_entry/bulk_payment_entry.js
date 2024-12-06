@@ -210,11 +210,20 @@ frappe.ui.form.on('Bulk Payment Entry', {
 });
 
 function calculate_total(frm) {
+    let due_balance = 0;
+    let grand = 0;
+    let balance = 0;
     let total = 0;
 
     frm.doc.bulk_payment_entry_details.forEach(row => {
         total += row.paid_amount || 0;
+        due_balance += row.due_balance || 0;
+        grand += row.grand_tot || 0;
+        balance += row.balance || 0;
     });
 
     frm.set_value('total', total);
+    frm.set_value('duebalance', due_balance);
+    frm.set_value('grandtotal', grand);
+    frm.set_value('balance_', balance);
 }

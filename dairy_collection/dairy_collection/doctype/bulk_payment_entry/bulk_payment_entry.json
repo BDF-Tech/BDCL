@@ -20,7 +20,14 @@
   "mode_of_payment",
   "section_break_sptnt",
   "bulk_payment_entry_details",
+  "section_break_l3efc",
+  "duebalance",
+  "column_break_awvae",
+  "grandtotal",
+  "column_break_ad0bq",
   "total",
+  "column_break_ylr5q",
+  "balance_",
   "section_break_h5fxe",
   "from_date",
   "column_break_hljkr",
@@ -164,7 +171,7 @@
   {
    "fieldname": "total",
    "fieldtype": "Float",
-   "label": "Total",
+   "label": "Paid Amount",
    "precision": "2",
    "read_only": 1
   },
@@ -185,6 +192,40 @@
    "fieldname": "total_payment_denomination",
    "fieldtype": "Currency",
    "label": "Total Payment Denomination"
+  },
+  {
+   "fieldname": "section_break_l3efc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_awvae",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ad0bq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ylr5q",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "duebalance",
+   "fieldtype": "Float",
+   "label": "Due Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "grandtotal",
+   "fieldtype": "Float",
+   "label": "Grand Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "balance_",
+   "fieldtype": "Float",
+   "label": "Balance",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -195,7 +236,7 @@
    "link_fieldname": "custom_bulk_payment_entry"
   }
  ],
- "modified": "2024-12-02 20:18:59.452014",
+ "modified": "2024-12-06 22:40:38.225375",
  "modified_by": "Administrator",
  "module": "Dairy Collection",
  "name": "Bulk Payment Entry",
