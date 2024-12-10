@@ -170,7 +170,7 @@
   },
   {
    "fieldname": "total",
-   "fieldtype": "Float",
+   "fieldtype": "Int",
    "label": "Paid Amount",
    "precision": "2",
    "read_only": 1
@@ -211,19 +211,19 @@
   },
   {
    "fieldname": "duebalance",
-   "fieldtype": "Float",
+   "fieldtype": "Int",
    "label": "Due Balance",
    "read_only": 1
   },
   {
    "fieldname": "grandtotal",
-   "fieldtype": "Float",
+   "fieldtype": "Int",
    "label": "Grand Total",
    "read_only": 1
   },
   {
    "fieldname": "balance_",
-   "fieldtype": "Float",
+   "fieldtype": "Int",
    "label": "Balance",
    "read_only": 1
   }
@@ -236,7 +236,7 @@
    "link_fieldname": "custom_bulk_payment_entry"
   }
  ],
- "modified": "2024-12-06 22:40:38.225375",
+ "modified": "2024-12-10 22:37:16.452832",
  "modified_by": "Administrator",
  "module": "Dairy Collection",
  "name": "Bulk Payment Entry",
