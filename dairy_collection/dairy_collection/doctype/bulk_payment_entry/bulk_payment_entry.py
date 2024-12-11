@@ -406,7 +406,7 @@ class BulkPaymentEntry(Document):
 						},),
 				no_create_invoices = frappe.get_all(
 					"No Crate Invoice",
-					filters={"parent": gate_pass_entry.gate_pass},
+					filters={"parent": i.gate_pass},
 					fields=["invoice_no", "name", "parent"]
 				)
 				for j in no_create_invoices:
