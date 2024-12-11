@@ -421,7 +421,7 @@ class BulkPaymentEntry(Document):
 								"Partly Paid and Discounted"
 							]]
 						},
-						fields=["grand_total", "outstanding_amount", "customer"]
+						fields=["grand_total", "outstanding_amount", "customer", "party_balance"]
 					)
 					for k in doc:
 						self.append("bulk_payment_entry_details", {
