@@ -404,6 +404,37 @@ class BulkPaymentEntry(Document):
 							"gate_pass_date": j.parent,
 							"reference_id":j.name,
 						},),
+				no_create_invoices = frappe.get_all(
+					"No Crate Invoice",
+					filters={"parent": gate_pass_entry.gate_pass},
+					fields=["invoice_no", "name", "parent"]
+				)
+				for j in no_create_invoices:
+					doc = frappe.get_list(
+						"Sales Invoice",
+						filters={
+							"name": j.invoice_no,
+							"outstanding_amount": (">", 0),
+							"status": ["in", [
+								"Overdue", "Partly Paid", "Unpaid",
+								"Unpaid and Discounted", "Overdue and Discounted",
+								"Partly Paid and Discounted"
+							]]
+						},
+						fields=["grand_total", "outstanding_amount", "customer"]
+					)
+					for k in doc:
+						self.append("bulk_payment_entry_details", {
+							'party':k.customer,
+							'party_type':self.party_type,
+							"party_name": frappe.db.get_value("Customer", {"name": k.customer}, 'customer_name'),
+							"payment_type":self.payment_type,
+							"due_balance":k.party_balance,
+							"grand_tot":k.grand_total,
+							"balance": k.party_balance + k.grand_total,
+							"reference_id":j.name,
+							"route":frappe.get_value("Gate Pass",{"name":i.gate_pass},"route"),
+						},),
 		
 
 	@frappe.whitelist()

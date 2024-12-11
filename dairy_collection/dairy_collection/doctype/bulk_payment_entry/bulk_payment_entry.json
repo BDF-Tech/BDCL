@@ -28,6 +28,9 @@
   "total",
   "column_break_ylr5q",
   "balance_",
+  "section_break_3udq4",
+  "payment_denomination",
+  "total_payment_denomination",
   "section_break_h5fxe",
   "from_date",
   "column_break_hljkr",
@@ -35,10 +38,7 @@
   "section_break_5xgps",
   "invoices",
   "orders",
-  "section_break_5etzl",
   "payment_reference",
-  "payment_denomination",
-  "total_payment_denomination",
   "amended_from"
  ],
  "fields": [
@@ -117,6 +117,7 @@
    "options": "Bulk Payment Entry Details"
   },
   {
+   "collapsible": 1,
    "fieldname": "section_break_h5fxe",
    "fieldtype": "Section Break",
    "label": "Select Timespan to Get Outstanding Invoices and Outstanding Orders"
@@ -136,8 +137,10 @@
    "label": "To Date"
   },
   {
+   "collapsible": 1,
    "fieldname": "section_break_5xgps",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Payment Reference"
   },
   {
    "fieldname": "invoices",
@@ -148,10 +151,6 @@
    "fieldname": "orders",
    "fieldtype": "Button",
    "label": "Get OutStanding Orders"
-  },
-  {
-   "fieldname": "section_break_5etzl",
-   "fieldtype": "Section Break"
   },
   {
    "fieldname": "payment_reference",
@@ -226,6 +225,10 @@
    "fieldtype": "Int",
    "label": "Balance",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_3udq4",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -236,7 +239,7 @@
    "link_fieldname": "custom_bulk_payment_entry"
   }
  ],
- "modified": "2024-12-10 22:37:16.452832",
+ "modified": "2024-12-11 20:12:34.005658",
  "modified_by": "Administrator",
  "module": "Dairy Collection",
  "name": "Bulk Payment Entry",

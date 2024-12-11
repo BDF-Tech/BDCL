@@ -12,8 +12,8 @@
   "party_type",
   "party",
   "party_name",
-  "column_break_fsftk",
   "due_balance",
+  "column_break_fsftk",
   "grand_tot",
   "paid_amount",
   "balance",
@@ -88,14 +88,6 @@
   {
    "fieldname": "column_break_fsftk",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "paid_amount",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Paid Amount",
-   "options": "paid_from_account_currency",
-   "reqd": 1
   },
   {
    "depends_on": "eval:(in_list([\"Internal Transfer\", \"Pay\"], doc.payment_type) || doc.party)",
@@ -294,25 +286,28 @@
   },
   {
    "fieldname": "due_balance",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
+   "fieldtype": "Int",
    "label": "Due Balance"
   },
   {
-   "fieldname": "balance",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Balance"
+   "fieldname": "grand_tot",
+   "fieldtype": "Int",
+   "label": "Grand Total"
   },
   {
-   "fieldname": "grand_tot",
-   "fieldtype": "Currency",
-   "label": "Grand Total"
+   "fieldname": "paid_amount",
+   "fieldtype": "Int",
+   "label": "Paid Amount"
+  },
+  {
+   "fieldname": "balance",
+   "fieldtype": "Int",
+   "label": "Balance"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2024-11-24 19:31:30.180332",
+ "modified": "2024-12-11 20:07:39.982475",
  "modified_by": "Administrator",
  "module": "Dairy Collection",
  "name": "Bulk Payment Entry Details",
