@@ -359,10 +359,6 @@ class BulkPaymentEntry(Document):
 
 	@frappe.whitelist()
 	def get_allocatedsum(self):
-<<<<<<< HEAD
-=======
-		# frappe.throw("hiiiii")
->>>>>>> 69e4dcb (first commit)
 		for i in self.get("bulk_payment_entry_details"):
 			total_asum = 0  # Initialize outside the loop
 			for j in self.get("payment_reference", {'reference_id': i.reference_id}):
@@ -383,7 +379,6 @@ class BulkPaymentEntry(Document):
 	def get_gate_pass(self):
 		if self.party_type =="Customer":
 			for i in self.get("gate_pass"):	
-<<<<<<< HEAD
 				child_data=frappe.get_all("Crate Summary",filters={"parent":i.gate_pass},fields=["voucher_type","voucher","name","parent"])
 				for j in child_data:
 					doc = frappe.get_list("Sales Invoice", filters={"name":j.voucher,"outstanding_amount": (">", 0), "status":["in",["Overdue","Partly Paid","Unpaid","Unpaid and Discounted","Overdue and Discounted","Partly Paid and Discounted"]]},fields=["grand_total","outstanding_amount","customer","party_balance"],)
@@ -442,71 +437,6 @@ class BulkPaymentEntry(Document):
 						},),
 		
 
-=======
-				# frappe.throw(str(i))
-				child_data=frappe.get_all("Crate Summary",filters={"parent":i.gate_pass},fields=["voucher_type","voucher","name","parent"])
-					
-				if (child_data):
-					for j in child_data:
-						doc = frappe.get_list("Sales Invoice", filters={"name":j.voucher,"outstanding_amount": (">", 0), "status":["in",["Overdue","Partly Paid","Unpaid","Unpaid and Discounted","Overdue and Discounted","Partly Paid and Discounted"]]},fields=["grand_total","outstanding_amount","customer"],)
-						# frappe.throw(str(doc))
-						if doc:
-							for k in doc:
-								self.append("bulk_payment_entry_details", {
-									'party':k.customer,
-									'party_type':self.party_type,
-									"party_name": frappe.db.get_value("Customer", {"name": k.customer}, 'customer_name'),
-									"payment_type":self.payment_type,
-									"reference_id":j.name,
-									"route":frappe.get_value("Gate Pass",{"name":i.gate_pass},"route"),
-								},),
-								self.append("payment_reference", {
-												"party_type":self.party_type,
-												"party_name":frappe.db.get_value("Customer", {"name": k.customer}, 'customer_name'),
-												"reference_doctype":j.voucher_type,
-												"reference_name":j.voucher,
-												"total_amount":k.grand_total,
-												"outstanding_amount":k.outstanding_amount,
-												"gate_pass_date": j.parent,
-												"reference_id":j.name,
-								},),
-
-	
-
-	# @frappe.whitelist()
-	# def gate(self):
-	# 	final_listed = []
-	# 	if self.party_type == "Customer" and self.payment_type == "Receive":
-	# 		# Execute SQL query to fetch parent values
-	# 		sql_query = """
-	# 			SELECT DISTINCT cs.parent
-	# 			FROM `tabCrate Summary` cs
-	# 			JOIN `tabSales Invoice` si ON cs.voucher = si.name
-	# 			WHERE cs.docstatus = 1
-	# 			AND si.outstanding_amount > 0
-	# 			AND si.status IN ('Overdue', 'Partly Paid', 'Unpaid', 'Unpaid and Discounted', 'Overdue and Discounted', 'Partly Paid and Discounted')
-	# 			AND EXISTS (
-	# 				SELECT 1
-	# 				FROM `tabSales Invoice` si2
-	# 				WHERE si2.name = cs.voucher
-	# 				AND si2.outstanding_amount > 0
-	# 				AND si2.status IN ('Overdue', 'Partly Paid', 'Unpaid', 'Unpaid and Discounted', 'Overdue and Discounted', 'Partly Paid and Discounted')
-	# 			)
-	# 			AND NOT EXISTS (
-	# 				SELECT 1
-	# 				FROM `tabCrate Summary` cs2
-	# 				WHERE cs2.docstatus = 1
-	# 				AND cs2.voucher = si.name
-	# 				AND cs2.parent <> cs.parent
-	# 			);
-	# 		"""
-			
-	# 		result = frappe.db.sql(sql_query, as_dict=True)
-		
-	# 		if result:
-	# 			for row in result:
-	# 				final_listed.append(row['parent'])
->>>>>>> 69e4dcb (first commit)
 	@frappe.whitelist()
 	def gate(self):
 		final_listed = []
@@ -544,10 +474,6 @@ class BulkPaymentEntry(Document):
 	@frappe.whitelist()
 	def payment_entry(self):
 		for i in self.get("bulk_payment_entry_details",{"paid_amount":(">",0)}):
-<<<<<<< HEAD
-=======
-			
->>>>>>> 69e4dcb (first commit)
 			doc = frappe.new_doc("Payment Entry")
 			doc.posting_date =self.posting_date
 			doc.company = self.company	
@@ -587,15 +513,10 @@ class BulkPaymentEntry(Document):
 			doc.submit()
 
 	def before_cancel(self):
-<<<<<<< HEAD
-=======
-		# frappe.throw("hiii")
->>>>>>> 69e4dcb (first commit)
 		payment_entries = frappe.get_all("Payment Entry", filters={"custom_bulk_payment_entry": self.name})
 		for pe in payment_entries:
 			payment_entry = frappe.get_doc("Payment Entry", pe.name)
 			payment_entry.cancel()
-<<<<<<< HEAD
 
 	def before_save(self):
 		tot_pay = 0
@@ -604,5 +525,3 @@ class BulkPaymentEntry(Document):
 		for dom in self.payment_denomination:
 			tot_pay += dom.total
 		self.total_payment_denomination = tot_pay
-=======
->>>>>>> 69e4dcb (first commit)

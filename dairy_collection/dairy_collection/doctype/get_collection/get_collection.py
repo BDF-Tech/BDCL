@@ -39,9 +39,6 @@ class GetCollection(Document):
                                             "entry_date": item["EntryDate"],
                                             "milk_type": item["MilkType"],
                                             "shift": item["Shift"]})
-                        
-                        
-                        
                         if doc_exists:
                             doc = frappe.get_doc("Dairy Collection", {
                                             "farmer_id": item["FarmerId"],
@@ -95,8 +92,10 @@ class GetCollection(Document):
                                     datetime_obj = datetime.strptime(item["EntryDate"], '%Y-%m-%dT%H:%M:%S')
                                     time_12_hr = datetime.strptime(item["Time"], '%I:%M:%S %p')
                                     time_24hr_format = time_12_hr.strftime('%H:%M:%S')
-
-                                    milk_doc.dcs_id = frappe.get_value("Supplier",is_member_exists,"dcs")
+                                    dcs = frappe.get_value("Supplier",is_member_exists,"dcs")
+                                    if not dcs:
+                                        frappe.throw(f"Set DCS For Supplier : {is_member_exists}")
+                                    milk_doc.dcs_id = dcs
                                     milk_doc.member = frappe.get_value("Supplier",is_member_exists,"name")
                                     milk_doc.milk_type = {"C": "Cow", "B": "Buffalo"}.get(item["MilkType"], "Mix")
                                     milk_doc.shift = {"M":"Morning", "E":"Evening"}.get(item['Shift'],"Morning")
@@ -113,10 +112,6 @@ class GetCollection(Document):
                                     frappe.msgprint("Provided supplier is not a member")
                             else:
                                 frappe.msgprint(f"No supplier found for <strong>{item['FarmerId']}</strong>")
-                            
-                            
-                            
-
                             
                     frappe.msgprint("Data saved succesfully")
                 else:
