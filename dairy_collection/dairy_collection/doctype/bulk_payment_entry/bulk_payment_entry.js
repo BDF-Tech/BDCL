@@ -213,7 +213,6 @@ function calculate_total(frm) {
     let due_balance = 0;
     let grand = 0;
     let balance = 0;
-    let total = 0;
 
     frm.doc.bulk_payment_entry_details.forEach(row => {
         total += row.paid_amount || 0;

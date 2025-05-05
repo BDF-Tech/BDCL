@@ -26,11 +26,9 @@ class GetCollection(Document):
             "station_id":self.station_id
         })
          
-        # frappe.throw("hello")
         if not is_exists:
             response = requests.request("GET", url, data=payload,  headers=headersList)
             dairy_collections = response.json()
-            # frappe.throw(str(dairy_collections))
             if response.status_code == 200 and dairy_collections["IsValid"]:
                 if dairy_collections["Data"]!= None and dairy_collections["Data"]:
                     for item in dairy_collections["Data"]:
@@ -39,9 +37,6 @@ class GetCollection(Document):
                                             "entry_date": item["EntryDate"],
                                             "milk_type": item["MilkType"],
                                             "shift": item["Shift"]})
-                        
-                        
-                        
                         if doc_exists:
                             doc = frappe.get_doc("Dairy Collection", {
                                             "farmer_id": item["FarmerId"],
@@ -60,7 +55,7 @@ class GetCollection(Document):
                                 doc.shift : item["Shift"],
                                 doc.milk_type : item["MilkType"],
                                 doc.entry_date : item["EntryDate"],
-                                doc.rate : item["Rate"],
+                                # doc.rate : item["Rate"],
                                 doc.time: item["Time"],
                                 doc.amount : item["Amount"]
                             })
@@ -80,43 +75,39 @@ class GetCollection(Document):
                             doc.shift = item["Shift"]
                             doc.milk_type = item["MilkType"]
                             doc.entry_date = item["EntryDate"]
-                            doc.rate = item["Rate"]
+                            # doc.rate = item["Rate"]
                             doc.time = item["Time"]
-                            doc.amount = item["Amount"]
-                            doc.insert()
+                            # doc.amount = item["Amount"]
+                            # doc.insert()
                             doc.save()
                             
                             
                             is_member_exists = frappe.db.exists("Supplier",{"custom_member_id":str(item['FarmerId'])})
-                            # frappe.throw(str(frappe.db.exists("Supplier",{"name":"SUP001"})))
                             if is_member_exists:
                                 if frappe.get_value("Supplier",is_member_exists,"is_mem"):
-                                    # frappe.throw(str(frappe.get_value("Supplier",is_member_exists,"is_mem")))
                                     datetime_obj = datetime.strptime(item["EntryDate"], '%Y-%m-%dT%H:%M:%S')
                                     time_12_hr = datetime.strptime(item["Time"], '%I:%M:%S %p')
-                                    time_24hr_format = time_12_hr.strftime('%H:%M:%S')
-
-                                    milk_doc.dcs_id = frappe.get_value("Supplier",is_member_exists,"dcs")
+                                    dcs = frappe.get_value("Supplier",is_member_exists,"dcs")
+                                    if not dcs:
+                                        frappe.throw(f"Set DCS For Supplier : {is_member_exists}")
+                                    milk_doc.dcs_id = dcs
                                     milk_doc.member = frappe.get_value("Supplier",is_member_exists,"name")
                                     milk_doc.milk_type = {"C": "Cow", "B": "Buffalo"}.get(item["MilkType"], "Mix")
                                     milk_doc.shift = {"M":"Morning", "E":"Evening"}.get(item['Shift'],"Morning")
                                     milk_doc.date = datetime_obj.date()
-                                    milk_doc.time = time_24hr_format
+                                    milk_doc.time = time_12_hr.strftime('%H:%M:%S')
                                     milk_doc.volume = item["Qty"]
+                                    # milk_doc.rate = item["Rate"]
                                     milk_doc.fat = item["Fat"]
                                     milk_doc.snf = item["Snf"]
                                     milk_doc.clr = item["Clr"]
-                                    milk_doc.insert()
+                                    # milk_doc.insert()
                                     milk_doc.save()
                                     
                                 else:
                                     frappe.msgprint("Provided supplier is not a member")
                             else:
                                 frappe.msgprint(f"No supplier found for <strong>{item['FarmerId']}</strong>")
-                            
-                            
-                            
-
                             
                     frappe.msgprint("Data saved succesfully")
                 else:
