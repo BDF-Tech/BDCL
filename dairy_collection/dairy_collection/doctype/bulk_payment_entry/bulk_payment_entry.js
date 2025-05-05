@@ -156,20 +156,11 @@ frappe.ui.form.on('Bulk Payment Entry', {
 			doc: frm.doc
 		});
 		frm.refresh_table("bulk_payment_entry_details");
-<<<<<<< HEAD
 		frm.refresh_table("payment_reference");	
-=======
-		
-		frm.refresh_table("payment_reference");	
-			
-		
-		
->>>>>>> 69e4dcb (first commit)
 	},
 
 });
 
-<<<<<<< HEAD
 frappe.ui.form.on('Bulk Payment Entry Payment Denomination', {
 	denomination: function (frm, cdt, cdn) {
 		var d = locals[cdt][cdn];
@@ -184,8 +175,6 @@ frappe.ui.form.on('Bulk Payment Entry Payment Denomination', {
 		}
 	},
 });
-=======
->>>>>>> 69e4dcb (first commit)
 
 
 frappe.ui.form.on("Bulk Payment Entry", {
