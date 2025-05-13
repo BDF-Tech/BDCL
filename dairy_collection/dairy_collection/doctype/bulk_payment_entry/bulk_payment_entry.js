@@ -148,17 +148,22 @@ frappe.ui.form.on('Bulk Payment Reference', {
 
 
 frappe.ui.form.on('Bulk Payment Entry', {
-	gate_pass: function (frm) {	
-		frm.clear_table("bulk_payment_entry_details");
-		frm.clear_table("payment_reference");
-		frm.call({
-			method: 'gate_pass_cll',
-			doc: frm.doc
-		});
-		frm.refresh_table("bulk_payment_entry_details");
-		frm.refresh_table("payment_reference");	
-	},
+    gate_pass: function (frm) {	
+        frm.clear_table("bulk_payment_entry_details");
+        frm.clear_table("payment_reference");
 
+        frm.call({
+            method: 'gate_pass_cll',
+            doc: frm.doc,
+            callback: function (r) {
+                if (!r.exc) {
+                    // Refresh tables only after server call is successful
+                    frm.refresh_field("bulk_payment_entry_details");
+                    frm.refresh_field("payment_reference");
+                }
+            }
+        });
+    },
 });
 
 frappe.ui.form.on('Bulk Payment Entry Payment Denomination', {
@@ -210,6 +215,7 @@ frappe.ui.form.on('Bulk Payment Entry', {
 });
 
 function calculate_total(frm) {
+    let total = 0;
     let due_balance = 0;
     let grand = 0;
     let balance = 0;
