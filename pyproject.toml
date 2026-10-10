@@ -1,16 +1,23 @@
 [project]
 name = "dairy_collection"
-version = "0.0.1"
-description = "To get Data from api"
 authors = [
-  { name = "Erpdata", email = "contact@erpdata.in" }
+    { name = "Erpdata", email = "contact@erpdata.in"}
 ]
+description = "To get Data from api"
 requires-python = ">=3.10"
 readme = "README.md"
-dependencies = []
+dynamic = ["version"]
+dependencies = [
+    # "frappe~=15.0.0" # Installed and managed by bench.
+]
 
-[tool.frappe]
-app_name = "dairy_collection"
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
 
 [tool.bench.frappe-dependencies]
 frappe = ">=16.0.0,<17.0.0"
+
+# These dependencies are only installed when developer mode is enabled
+[tool.bench.dev-dependencies]
+# package_name = "~=1.1.0"
